@@ -4,9 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS Modules</title>
-    <script>type="module"; src="main.js"</script>
+    <!-- <script>type="module"; src="pokemon.js"</script> -->
 </head>
 <body>
-    
+    <main>
+        <form id="formElem">
+            <input type="text" name="name" value="John">
+            <input type="text" name="surname" value="Smith">
+            <input type="submit">
+          </form>
+          
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const formElem = document.getElementById('formElem');
+
+            formElem.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Collect form data
+                const formData = new FormData(formElem);
+
+                // Append the current date to the form data
+                const currentDate = new Date().toISOString();
+                formData.append('currentDate', currentDate);
+
+                // Convert form data to a plain JavaScript object
+                const formDataObject = {};
+                formData.forEach((value, key) => {
+                    formDataObject[key] = value;
+                });
+
+                // Output form data to console
+                console.log('Form Data:', formDataObject);
+            });
+        });
+    </script>
+
+    </main>
 </body>
 </html>
